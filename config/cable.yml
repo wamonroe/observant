@@ -1,0 +1,13 @@
+default: &default
+  adapter: redis
+  url: <%= "#{ENV.fetch('REDIS_URL', 'redis://localhost')}:#{ENV.fetch('REDIS_PORT', 6379)}/#{ENV.fetch('REDIS_DB', 0)}" %>
+  channel_prefix: observant
+
+development:
+  <<: *default
+
+test:
+  adapter: test
+
+production:
+  <<: *default

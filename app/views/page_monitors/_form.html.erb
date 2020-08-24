@@ -1,0 +1,68 @@
+<%= form_with(model: page_monitor, local: true, class: 'w-full', data: { controller: 'preview', 'preview-url': preview_new_page_monitor_path }) do |form| %>
+  <% if page_monitor.errors.any? %>
+    <div id="error_explanation" class="w-full">
+      <h2><%= pluralize(page_monitor.errors.count, "error") %> prohibited this page_monitor from being saved:</h2>
+
+      <ul>
+        <% page_monitor.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="flex flex-col w-full actions">
+    <div class="flex flex-col mb-4">
+      <%= form.label :url %>
+      <%= form.text_field :url, class: 'w-full form-input', data: { target: 'preview.input' } %>
+    </div>
+    <div class="flex flex-col mb-4">
+      <%= form.label :name %>
+      <%= form.text_field :name, class: 'w-full form-input' %>
+    </div>
+    <div class="flex flex-col mb-4">
+      <%= form.label :enabled %>
+      <%= form.check_box :enabled, class: 'form-checkbox' %>
+    </div>
+    <!--
+    <div class="flex flex-col mb-4">
+      <%= form.label :frequency %>
+      <%= form.range_field :frequency, in: 600..86400, class: 'w-full h-3 transition-opacity bg-gray-300 outline-none opacity-75 appearance-none hover:opacity-100 slider' %>
+    </div>
+    -->
+    <div class="flex flex-col mb-4">
+      <%= form.label :frequency %>
+      <%= form.number_field :frequency, class: 'w-full form-input', min: 600, step: 60 %>
+    </div>
+    <div class="flex flex-col mb-4" data-controller="array-input">
+      <%= form.label :selections %>
+      <div data-target="array-input.container">
+        <% Array(page_monitor.selections).each do |selection| %>
+          <div class="flex items-center mb-2" data-target="array-input.input">
+            <input type="text" class="flex-1 form-textarea" value="<%= selection %>" name="page_monitor[selections][]" data-action="array-input#set" data-target="preview.input">
+            <button class="flex-none w-6 h-6 ml-2 text-red-700 hover:text-red-800" data-action="array-input#remove">
+              <svg class="w-full h-full" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 000 2h6a1 1 0 100-2H7z" clip-rule="evenodd"></path></svg>
+            </button>
+          </div>
+        <% end %>
+      </div>
+      <template class="hidden" data-target="array-input.template">
+        <div class="flex items-center mb-2" data-target="array-input.input">
+          <input type="text" disabled="disabled" class="flex-1 form-textarea" value="" name="page_monitor[selections][]" data-action="array-input#set" data-target="preview.input">
+          <button class="flex-none w-6 h-6 ml-2 text-red-700 hover:text-red-800" data-action="array-input#remove">
+            <svg class="w-full h-full" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 000 2h6a1 1 0 100-2H7z" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </template>
+      <div class="flex justify-end">
+        <button class="flex-none w-6 h-6 ml-2 text-green-700 hover:text-green-800" data-action="array-input#add">
+          <svg class="w-full h-full" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path></svg>
+        </button>
+      </div>
+    </div>
+    <div class="mb-4">
+      <%= form.submit 'Update', class: 'px-6 py-2 text-white bg-blue-700 rounded-sm cursor-pointer' %>
+      <button class="px-6 py-2 text-white bg-blue-700 rounded-sm" data-action="preview#get">Preview</button>
+    </div>
+  </div>
+<% end %>

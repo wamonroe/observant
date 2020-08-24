@@ -1,0 +1,21 @@
+/* Tailwinds */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1.125rem;
+  height: 1.125rem;
+  background: #2b6cb0;
+  cursor: pointer;
+  border-radius: 9999px;
+}
+
+.slider::-moz-range-thumb {
+  width: 1.125rem;
+  height: 1.125rem;
+  background: #2b6cb0;
+  cursor: pointer;
+}

@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+require 'fileutils'
+
+# path to your application root.
+APP_ROOT = File.expand_path('..', __dir__)
+
+FileUtils.chdir APP_ROOT do
+  puts "== Starting Clockwork =="
+  system "bundle exec clockworkd -c config/clock.rb start --pid-dir=#{File.join(APP_ROOT, 'tmp/pids')} --log"
+end

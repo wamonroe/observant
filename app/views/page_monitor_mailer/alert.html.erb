@@ -1,0 +1,24 @@
+<div class="flex flex-col m-4">
+  <div class="flex">
+    <%= link_to @page_monitor.url, class: 'flex items-center justify-center w-40 h-12 bg-blue-200 border border-gray-500 rounded' do %>
+      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4.083 9h1.946c.089-1.546.383-2.97.837-4.118A6.004 6.004 0 004.083 9zM10 2a8 8 0 100 16 8 8 0 000-16zm0 2c-.076 0-.232.032-.465.262-.238.234-.497.623-.737 1.182-.389.907-.673 2.142-.766 3.556h3.936c-.093-1.414-.377-2.649-.766-3.556-.24-.56-.5-.948-.737-1.182C10.232 4.032 10.076 4 10 4zm3.971 5c-.089-1.546-.383-2.97-.837-4.118A6.004 6.004 0 0115.917 9h-1.946zm-2.003 2H8.032c.093 1.414.377 2.649.766 3.556.24.56.5.948.737 1.182.233.23.389.262.465.262.076 0 .232-.032.465-.262.238-.234.498-.623.737-1.182.389-.907.673-2.142.766-3.556zm1.166 4.118c.454-1.147.748-2.572.837-4.118h1.946a6.004 6.004 0 01-2.783 4.118zm-6.268 0C6.412 13.97 6.118 12.546 6.03 11H4.083a6.004 6.004 0 002.783 4.118z" clip-rule="evenodd"></path></svg>
+      <span class="ml-2">Website</span>
+    <% end %>
+    <%= link_to page_monitors_url, class: 'flex items-center justify-center w-40 h-12 ml-4 bg-blue-100 border border-gray-500 rounded' do %>
+      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path></svg>
+      <span class="ml-2">Watchlist</span>
+    <% end %>
+  </div>
+  <div class="mt-6 mb-2 font-serif text-xl font-semibold">
+    Latest Content
+  </div>
+  <div>
+    <%= simple_format(@page_monitor.content) %>
+  </div>
+  <div class="mt-6 mb-2 font-serif text-xl font-semibold">
+    Previous Content
+  </div>
+  <div>
+    <%= simple_format(@page_monitor.previous_content) %>
+  </div>
+</div>

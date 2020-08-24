@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<div class="flex flex-col w-full max-w-screen-xl">
+  <div class="flex items-center flex-none h-16">
+    <div class="flex items-center flex-1 text-gray-700">
+      <%= link_to page_monitors_path, class: 'hover:text-blue-700' do %>
+        <svg class="inline-block w-8 h-8" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+      <% end %>
+      <h1 class="inline-block text-2xl font-semibold">
+        Editing Page Monitor
+      </h1>
+    </div>
+    <div class="flex justify-end flex-none w-48">
+      <%= link_to @page_monitor, class: 'flex items-center justify-center w-full h-10 text-white bg-blue-600 rounded-sm hover:bg-blue-700' do %>
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path></svg>
+        <div class="ml-2">Show</div>
+      <% end %>
+    </div>
+  </div>
+  <div class="flex-1">
+    <%= render 'form', page_monitor: @page_monitor %>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+version: '3.4'
+volumes:
+  db_data:
+    name: observant_db_data_dev
+services:
+  db:
+    image: postgres:12.3-alpine
+    environment:
+      - PGDATA=/var/lib/postgresql/data/pgdata
+      - POSTGRES_USER=observant
+      - POSTGRES_PASSWORD=observant
+    ports:
+      - 5432:5432
+    volumes:
+      - db_data:/var/lib/postgresql/data/pgdata
+  redis:
+    image: redis:6.0.6-alpine
+    ports:
+      - 6379:6379

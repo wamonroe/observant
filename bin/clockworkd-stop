@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+require 'fileutils'
+
+# path to your application root.
+APP_ROOT = File.expand_path('..', __dir__)
+
+FileUtils.chdir APP_ROOT do
+  # stop all workers and the scheduler
+  pid_file = File.join(APP_ROOT, 'tmp/pids/clockworkd.clock.pid')
+  if File.exist?(pid_file)
+    system "kill -3 `cat #{pid_file}` > /dev/null 2>&1"
+  end
+end

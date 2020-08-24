@@ -1,0 +1,69 @@
+<p id="notice"><%= notice %></p>
+
+<div class="flex flex-col w-full max-w-screen-xl">
+  <div class="flex items-center flex-none h-16">
+    <div class="flex-1 text-gray-700">
+      <h1 class="text-2xl font-semibold">Page Monitors</h1>
+    </div>
+    <div class="flex justify-end flex-none w-48">
+      <%= link_to 'Add', new_page_monitor_path, class: 'flex items-center justify-center w-full h-10 text-white bg-green-700 rounded-sm hover:bg-green-800' %>
+    </div>
+  </div>
+  <div class="flex-1 overflow-x-auto">
+    <table class="w-full border-2 border-collapse border-gray-500">
+      <thead>
+        <tr>
+          <th class="px-4 py-2 border border-gray-400">Name</th>
+          <th class="px-4 py-2 border border-gray-400">Latest Content</th>
+          <th class="px-4 py-2 border border-gray-400">Frequency</th>
+          <th class="px-4 py-2 border border-gray-400">Last Check</th>
+          <th class="px-4 py-2 border border-gray-400">Status</th>
+          <th class="px-4 py-2 border border-gray-400" colspan="3">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="text-sm">
+        <% @page_monitors.each do |page_monitor| %>
+          <tr>
+            <td class="max-w-xs px-4 py-2 whitespace-no-wrap border border-gray-400">
+              <div class="overflow-hidden">
+                <%= link_to page_monitor.url, class: 'flex items-center text-blue-800 hover:text-blue-900 hover:underline', target: '_blank' do %>
+                  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path><path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path></svg>
+                  <span><%= page_monitor.name %></span>
+                <% end %>
+              </div>
+            </td>
+            <td class="max-w-sm px-4 py-2 whitespace-no-wrap border border-gray-400">
+              <div class="overflow-hidden">
+                <%= page_monitor.content %>
+              </div>
+            </td>
+            <td class="px-4 py-2 overflow-hidden text-center whitespace-no-wrap border border-gray-400">
+              <%= humanize_seconds(page_monitor.frequency) %>
+            </td>
+            <td class="px-4 py-2 overflow-hidden text-center whitespace-no-wrap border border-gray-400">
+              <%= time_ago_in_words(page_monitor.last_checked_at) %> ago
+            </td>
+            <td class="px-4 py-2 overflow-hidden text-center whitespace-no-wrap border border-gray-400">
+              <%= page_monitor.enabled ? 'Enabled' : 'Disabled' %>
+            </td>
+            <td class="bg-blue-100 border border-gray-400">
+              <%= link_to page_monitor, class: 'flex items-center justify-center w-full h-full px-4 py-2' do %>
+                <svg class="w-6 h-6 text-blue-700" fill="currentColor" viewBox="0 0 20 20"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path></svg>
+              <% end %>
+            </td>
+            <td class="bg-yellow-100 border border-gray-400">
+              <%= link_to edit_page_monitor_path(page_monitor), class: 'flex items-center justify-center w-full h-full px-4 py-2' do %>
+                <svg class="w-6 h-6 text-yellow-700" fill="currentColor" viewBox="0 0 20 20"><path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"></path><path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd"></path></svg>
+              <% end %>
+            </td>
+            <td class="bg-red-100 border border-gray-400">
+              <%= link_to page_monitor, class: 'flex items-center justify-center w-full h-full px-4 py-2', method: :delete, data: { confirm: 'Are you sure?' } do %>
+                <svg class="w-6 h-6 text-red-700" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
